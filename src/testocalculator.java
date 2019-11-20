@@ -115,6 +115,7 @@ public class testocalculator extends JFrame
 		String [] unitCategories = { "Distance", "Mass/Weight", "Medical" };
 		JComboBox categoryChoice = new JComboBox(unitCategories);
 		categoryChoice.setBounds(320,40,150,25);
+		String [] oUnits = 
 		JComboBox oUnit;
 		
 		

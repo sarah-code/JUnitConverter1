@@ -1,0 +1,4 @@
+kind_of_unit,unit0,unit1,unit2,unit3,
+distance,meter,inch,kilometer,miles,
+weight,gramm,kilogramm,lbs,brit lbs,
+medical,nmol/L,pmol/L,pg/mL,ng/mL,
