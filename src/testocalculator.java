@@ -15,6 +15,7 @@ public class testocalculator extends JFrame
 	static JTextField conResult;
 	static JLabel result;
 	static JButton convert;
+	static JComboBox categoryChoice;
 	int varA;
 	
 	
@@ -98,7 +99,7 @@ public class testocalculator extends JFrame
 	public static void main (String args[])
 	{
 		
-		testocalculator tc = new testocalculator();
+		
 		
 		
 		JFrame frame = new JFrame("Convert Units");
@@ -113,16 +114,23 @@ public class testocalculator extends JFrame
 		oUnitValue.setLocation(10,40);
 		
 		String [] unitCategories = { "Distance", "Mass/Weight", "Medical" };
-		JComboBox categoryChoice = new JComboBox(unitCategories);
+		categoryChoice = new JComboBox(unitCategories);
 		categoryChoice.setBounds(320,40,150,25);
-		String [] oUnits = 
-		JComboBox oUnit;
-		
-		
-		JComboBox tarUnit;
-		
+		String [] oUnits = { "centimeter", "inch", "meter", "feet" };
+		String [] convUnits = null;
+		for (int i = 0; i < oUnits.length; i++)
+		{
+			convUnits[i] = oUnits[i];
+		}
+
+		JComboBox originalUnit = new JComboBox(oUnits);
+		categoryChoice.setBounds(500,40,150,25);
+		conResult = new JTextField();
+		conResult.setSize(200,10);
+		conResult.setLocation(600, 15);
 		frame.setLayout(null);
 		frame.add(categoryChoice);
+		frame.add(originalUnit);
 		frame.add(oUnitText);
 		frame.add(oUnitValue);
 		
