@@ -21,7 +21,7 @@ public class JUnitConverter extends JFrame
 	
 	int varA;
 	
-	public String[] readUnits()
+	public String[] readUnits() //Uoppsss... This is WIP
 	{
 		oUnits = { "centimeter", "inch", "meter", "feet" };
 		convUnits = new String [oUnits.length];
