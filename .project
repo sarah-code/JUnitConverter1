@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>JUnitConverter1</name>
+	<name>JUnitConverter</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -14,11 +14,10 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>src/units.csv</name>
-			<type>1</type>
-			<locationURI>PROJECT_LOC/bin/units.csv</locationURI>
-		</link>
-	</linkedResources>
+	<variableList>
+		<variable>
+			<name>copy_PROJECT_LOC</name>
+			<value>$%7BPARENT-1-PROJECT_LOC%7D/JUnitConverter1</value>
+		</variable>
+	</variableList>
 </projectDescription>

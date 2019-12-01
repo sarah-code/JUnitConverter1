@@ -4,7 +4,7 @@ import javax.swing.*;
 import javax.swing.JComboBox;
 import java.awt.event.*;
 import java.util.*;
-public class testocalculator extends JFrame
+public class JUnitConverter extends JFrame
 {
 	static JLabel oUnitText;
 	static JTextField oUnitValue;
@@ -16,7 +16,22 @@ public class testocalculator extends JFrame
 	static JLabel result;
 	static JButton convert;
 	static JComboBox categoryChoice;
+	public String [] oUnits;
+	public String [] convUnits;
+	
 	int varA;
+	
+	public String[] readUnits()
+	{
+		oUnits = { "centimeter", "inch", "meter", "feet" };
+		convUnits = new String [oUnits.length];
+		for (int i = 0; i > oUnits.length; i++)
+		{
+			convUnits[i] = oUnits[i];
+		}
+		
+		return oUnits;
+	}
 	
 	
 	public void start()
@@ -116,12 +131,7 @@ public class testocalculator extends JFrame
 		String [] unitCategories = { "Distance", "Mass/Weight", "Medical" };
 		categoryChoice = new JComboBox(unitCategories);
 		categoryChoice.setBounds(320,40,150,25);
-		String [] oUnits = { "centimeter", "inch", "meter", "feet" };
-		String [] convUnits = null;
-		for (int i = 0; i < oUnits.length; i++)
-		{
-			convUnits[i] = oUnits[i];
-		}
+		
 
 		JComboBox originalUnit = new JComboBox(oUnits);
 		categoryChoice.setBounds(500,40,150,25);
