@@ -6,6 +6,9 @@ import java.awt.event.*;
 import java.util.*;
 public class JUnitConverter extends JFrame
 {
+	public String [] oUnit;
+	public String [] convUnits;
+
 	static JLabel oUnitText;
 	static JTextField oUnitValue;
 	static BoxLayout left;
@@ -16,21 +19,19 @@ public class JUnitConverter extends JFrame
 	static JLabel result;
 	static JButton convert;
 	static JComboBox categoryChoice;
-	public String [] oUnits;
-	public String [] convUnits;
-	
+		
 	int varA;
 	
 	public String[] readUnits() //Uoppsss... This is WIP
 	{
-		oUnits = { "centimeter", "inch", "meter", "feet" };
-		convUnits = new String [oUnits.length];
-		for (int i = 0; i > oUnits.length; i++)
+		oUnit  = new String []  { "centimeter", "inch", "meter", "feet" };
+		convUnits = new String [oUnit.length];
+		for (int i = 0; i > oUnit.length; i++)
 		{
-			convUnits[i] = oUnits[i];
+			convUnits[i] = oUnit[i];
 		}
 		
-		return oUnits;
+		return oUnit;
 	}
 	
 	
