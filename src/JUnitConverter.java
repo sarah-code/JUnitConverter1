@@ -111,12 +111,8 @@ public class JUnitConverter extends JFrame
 			System.out.println(E+"was caught");
 		}
 	}
-	public static void main (String args[])
+	public void awtui()
 	{
-		
-		
-		
-		
 		JFrame frame = new JFrame("Convert Units");
 		GridBagLayout gridbaglay = new GridBagLayout();
 		frame.setLayout(gridbaglay);
@@ -149,8 +145,10 @@ public class JUnitConverter extends JFrame
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);;
 		frame.setVisible(true);
 		categoryChoice.setVisible(true);
-	
-		
-		
+	}
+	public static void main (String args[])
+	{
+		JUnitConverter juc = new JUnitConverter();
+		juc.awtui();
 	}
 }
