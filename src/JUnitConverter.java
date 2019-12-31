@@ -4,7 +4,8 @@ import javax.swing.*;
 import javax.swing.JComboBox;
 import java.awt.event.*;
 import java.util.*;
-public class JUnitConverter extends JFrame
+
+public class JUnitConverter 
 {
 	static JLabel oUnitText;
 	static JTextField oUnitValue;
@@ -15,22 +16,23 @@ public class JUnitConverter extends JFrame
 	static JTextField conResult;
 	static JLabel result;
 	static JButton convert;
-	static JComboBox categoryChoice;
-	public String [] oUnits;
+	static JComboBox<Object> categoryChoice;
+	public String [] oUnits = { "centimeter", "meter", "kilometer", "inch", "feet", "miles"};
 	public String [] convUnits;
 	
 	int varA;
 	
-	public String[] readUnits() //Uoppsss... This is WIP
+	
+	
+	public void readUnits() //Uoppsss... This is WIP
 	{
-		oUnits = { "centimeter", "inch", "meter", "feet" };
+		//100 cm = 1m, 1000 m = 1 km, 1 in = 2.51 cm, 12 in = 1 ft, 5280 ft = 1 mi, 1 mi = 1.6 km, 1ft = 0.3048 m, 1 m = 3.28084 ft
 		convUnits = new String [oUnits.length];
 		for (int i = 0; i > oUnits.length; i++)
 		{
 			convUnits[i] = oUnits[i];
 		}
 		
-		return oUnits;
 	}
 	
 	
@@ -121,24 +123,26 @@ public class JUnitConverter extends JFrame
 		oUnitText.setSize(200,10);
 		oUnitText.setLocation(20,15);
 		oUnitValue = new JTextField("",30);
-		oUnitValue.setSize(300,25);
+		oUnitValue.setSize(200,25);
 		oUnitValue.setLocation(10,40);
 		
-		String [] unitCategories = { "Distance", "Mass/Weight", "Medical" };
-		categoryChoice = new JComboBox(unitCategories);
-		categoryChoice.setBounds(320,40,150,25);
+		String [] unitCategories = { "Distance" };
+		categoryChoice = new JComboBox<Object>(unitCategories);
+		categoryChoice.setBounds(220,40,100,25);
 		
 
-		JComboBox originalUnit = new JComboBox(oUnits);
-		categoryChoice.setBounds(500,40,150,25);
+		JComboBox<Object> originalUnit = new JComboBox<Object>(oUnits);
+		originalUnit.setBounds(325,40,100,25);
+		
 		conResult = new JTextField();
-		conResult.setSize(200,10);
-		conResult.setLocation(600, 15);
+		conResult.setSize(200,25);
+		conResult.setLocation(450, 40);
 		frame.setLayout(null);
 		frame.add(categoryChoice);
 		frame.add(originalUnit);
 		frame.add(oUnitText);
 		frame.add(oUnitValue);
+		frame.add(conResult);
 		
 		frame.setSize(1000,800);
 		
