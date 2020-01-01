@@ -5,6 +5,7 @@ import javax.swing.JComboBox;
 import java.awt.event.*;
 import java.util.*;
 
+
 public class JUnitConverter 
 {
 	static JLabel oUnitText;
@@ -16,28 +17,21 @@ public class JUnitConverter
 	static JTextField conResult;
 	static JLabel result;
 	static JButton convert;
-	static JComboBox<Object> categoryChoice;
-	public String [] oUnits = { "centimeter", "meter", "kilometer", "inch", "feet", "miles"};
-	public String [] convUnits;
+	static JComboBox categoryChoice;
+	public ArrayList<String> oUnits;
+	public ArrayList<String> convUnits;
 	
 	int varA;
-	
-	
-	
-	public void readUnits() //Uoppsss... This is WIP
+
+	public void readUnits()
 	{
 		//100 cm = 1m, 1000 m = 1 km, 1 in = 2.51 cm, 12 in = 1 ft, 5280 ft = 1 mi, 1 mi = 1.6 km, 1ft = 0.3048 m, 1 m = 3.28084 ft
-		convUnits = new String [oUnits.length];
-		for (int i = 0; i > oUnits.length; i++)
-		{
-			convUnits[i] = oUnits[i];
-		}
-		
+				oUnits =  new ArrayList<String>(Arrays.asList("centimeter", "meter", "kilometer", "inch", "feet", "miles"));
+				convUnits = oUnits;
 	}
-	
-	
 	public void start()
 	{
+		
 		try
 		{
 			
@@ -126,20 +120,23 @@ public class JUnitConverter
 		oUnitValue.setSize(200,25);
 		oUnitValue.setLocation(10,40);
 		
-		String [] unitCategories = { "Distance" };
+		String [] unitCategories = { "Distance", "Mass", "Medical" };
+		
 		categoryChoice = new JComboBox<Object>(unitCategories);
 		categoryChoice.setBounds(220,40,100,25);
 		
-
-		JComboBox<Object> originalUnit = new JComboBox<Object>(oUnits);
-		originalUnit.setBounds(325,40,100,25);
 		
+		JComboBox<Object> originalUnit = new JComboBox(oUnits.toArray());
+		originalUnit.setBounds(325,40,100,25);
+		JComboBox<Object> convertedUnit = new JComboBox(convUnits.toArray());
+		convertedUnit.setBounds(450,40,100,25);
 		conResult = new JTextField();
 		conResult.setSize(200,25);
-		conResult.setLocation(450, 40);
+		conResult.setLocation(500, 40);
 		frame.setLayout(null);
 		frame.add(categoryChoice);
 		frame.add(originalUnit);
+		frame.add(convertedUnit);
 		frame.add(oUnitText);
 		frame.add(oUnitValue);
 		frame.add(conResult);
@@ -153,6 +150,8 @@ public class JUnitConverter
 	public static void main (String args[])
 	{
 		JUnitConverter juc = new JUnitConverter();
+		juc.readUnits();
 		juc.awtui();
+		
 	}
 }
