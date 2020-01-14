@@ -5,6 +5,7 @@ public class Main {
         JUnitConverter juc = new JUnitConverter();
         juc.readUnits();
         juc.awtui();
+        System.out.println(cs.unittable.get("meterkilometer"));
 
     }
 }
