@@ -18,8 +18,8 @@ public class JUnitConverter
 	static JLabel result;
 	static JButton convert;
 	static JComboBox categoryChoice;
-	public ArrayList<String> oUnits;
-	public ArrayList<String> convUnits;
+	private ArrayList<String> oUnits;
+	private ArrayList<String> convUnits;
 	
 	int varA;
 
@@ -146,12 +146,5 @@ public class JUnitConverter
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);;
 		frame.setVisible(true);
 		categoryChoice.setVisible(true);
-	}
-	public static void main (String args[])
-	{
-		JUnitConverter juc = new JUnitConverter();
-		juc.readUnits();
-		juc.awtui();
-		
 	}
 }
