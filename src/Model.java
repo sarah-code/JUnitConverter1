@@ -1,6 +1,6 @@
 import java.util.HashMap;
 
-public class ConversionStorage {
+public class Model {
     HashMap<String, String> unittable = new HashMap<String, String>();
 
     public void setUnittable(HashMap<String, String> unittable) {
