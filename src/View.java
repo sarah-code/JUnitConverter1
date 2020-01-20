@@ -16,12 +16,7 @@ public class View {
     static JComboBox categoryChoice;
     private ArrayList<String> oUnits;
     private ArrayList<String> convUnits;
-    public void readUnits()
-    {
-        //100 cm = 1m, 1000 m = 1 km, 1 in = 2.51 cm, 12 in = 1 ft, 5280 ft = 1 mi, 1 mi = 1.6 km, 1ft = 0.3048 m, 1 m = 3.28084 ft
-        oUnits =  new ArrayList<String>(Arrays.asList("centimeter", "meter", "kilometer", "inch", "feet", "miles"));
-        convUnits = oUnits;
-    }
+
     public void awtui()
     {
         JFrame frame = new JFrame("Convert Units");
