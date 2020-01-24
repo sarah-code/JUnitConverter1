@@ -3,15 +3,17 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class View1 {
+public class View1 extends JFrame {
+    public JFrame view = new JFrame("Converter Tool");
     public JPanel converterPanel;
-    private JComboBox UnitCategory;
+    private JComboBox<Object> UnitCategory;
     private JComboBox<Object> originalUnit;
     private JTextField oUnitValue;
     private JTextField conResult;
     private JButton CONVERTButton;
     private JButton resetButton;
     private JComboBox<Object> convertedUnit;
+
     private ArrayList<String> oUnits;
     private ArrayList<String> convUnits;
 
@@ -26,6 +28,8 @@ public class View1 {
         convUnits = oUnits;
     }
     public void awtui() {
+
+        readUnits();
         String[] unitCategories = {"Distance", "Mass", "Medical"};
         originalUnit = new JComboBox(oUnits.toArray());
         convertedUnit = new JComboBox(convUnits.toArray());
