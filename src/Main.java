@@ -9,6 +9,7 @@ public class Main {
         var con = new Controller();
         var viewer = new View1();
         viewer.setContentPane(new View1().converterPanel);
+        viewer.setTitle("Converter Tool");
         viewer.readUnits();
         viewer.awtui();
 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class View1 extends JFrame {
-    public JFrame view = new JFrame("Converter Tool");
+    public JFrame view = new JFrame();
     public JPanel converterPanel;
     private JComboBox<Object> UnitCategory;
     private JComboBox<Object> originalUnit;
