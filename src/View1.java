@@ -17,7 +17,7 @@ public class View1 extends JFrame implements ActionListener {
     private JComboBox<Object> convertedUnit;
     Model cs = new Model();
 
-     ArrayList<String> oUnits;
+    private ArrayList<String> oUnits;
     private ArrayList<String> convUnits;
 
     public View1 ()
@@ -59,13 +59,16 @@ public class View1 extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (cs.unittable.size() == 0) {
+            cs.initUnittable();
+        }
         if(e.getSource() == convertButton) {
             try {
                 double value = Integer.parseInt(oUnitValue.getText());
                 System.out.println(value);
-                String unitO = (String)originalUnit.getSelectedItem();
-                String unitC = (String)convertedUnit.getSelectedItem();
-                if(unitO.contains("-") != false || !unitC.contains("-") != false) {
+                String unitO = originalUnit.getSelectedItem().toString();
+                String unitC = convertedUnit.getSelectedItem().toString();
+                if(unitO.equals("----------") != false || !unitC.equals("----------") != false) {
                     String conConv = unitO.concat(unitC);
                     System.out.println(conConv);
                     System.out.println(cs.unittable.containsKey(conConv));

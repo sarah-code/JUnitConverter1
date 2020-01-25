@@ -1,7 +1,7 @@
 import java.util.HashMap;
 
 public class Model {
-    HashMap<String, Double> unittable = new HashMap<String, Double>();
+    public HashMap<String, Double> unittable = new HashMap<String, Double>();
 
     public void setUnittable(HashMap<String, Double> unittable) {
         this.unittable = unittable;
@@ -10,6 +10,12 @@ public class Model {
     public HashMap<String, Double> getUnittable() {
         return unittable;
     }
+
+    public double get(String key)
+    {
+        return get(key);
+    }
+
 
     public void initUnittable ()
     {
