@@ -11,7 +11,7 @@ public class Main {
         viewer.setContentPane(new View1().converterPanel);
 
         viewer.setTitle("Converter Tool");
-        viewer.readUnits();
+        //viewer.readUnits();
         System.out.println(cs.unittable.get("meterkilometer"));
 
         viewer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

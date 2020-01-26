@@ -17,44 +17,68 @@ public class View1 extends JFrame implements ActionListener {
     private JComboBox<Object> convertedUnit;
     Model cs = new Model();
 
-    private ArrayList<String> oUnits;
-    private ArrayList<String> convUnits;
+    private String [] oUnits;
+    private String [] convUnits;
 
     public View1 ()
     {
-        readUnits();
+        //readUnits();
         String[] unitCategories = {"----------", "Distance", "Mass", "Medical"};
         for (String cat : unitCategories)
         {
             unitCategory.addItem(cat);
         }
-        for (Object unit : getoUnits())
-        {
-            originalUnit.addItem(unit.toString());
-        }
-        for (Object convUnit : getConvUnits())
-        {
-            convertedUnit.addItem(convUnit.toString());
-        }
+        String init[] = {"----------"};
+        addToCombo(init);
+
+//
 
 
         convertButton.addActionListener(this);
 
+        unitCategory.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        //if(e.getSource() == unitCategory) {
+                            if (unitCategory.getSelectedItem().equals("----------")) {
+                                originalUnit.setSelectedIndex(-1);
+                                originalUnit.setEnabled(false);
+                                oUnitValue.setEnabled(false);
+                                conResult.setEnabled(false);
+                                convertedUnit.setEnabled(false);
+                                convertButton.setEnabled(false);
+                                resetButton.setEnabled(false);
+                            } else {
+                                originalUnit.setEnabled(true);
+                                oUnitValue.setEnabled(true);
+                                conResult.setEnabled(true);
+                                convertedUnit.setEnabled(true);
+                                convertButton.setEnabled(true);
+                                resetButton.setEnabled(true);
+                                if(unitCategory.getSelectedItem().equals("Distance"))
+                                {
+                                    String distances [] = {"----------", "centimeter", "meter", "kilometer", "inch", "feet", "miles"};
+                                    addToCombo(distances);
+                                }
+                            }
+                       // }
+                    }
+                }
+        );
+
     }
-    public void readUnits()
+
+    public void addToCombo (String [] add)
     {
-        //100 cm = 1m, 1000 m = 1 km, 1 in = 2.51 cm, 12 in = 1 ft, 5280 ft = 1 mi, 1 mi = 1.6 km, 1ft = 0.3048 m, 1 m = 3.28084 ft
-        oUnits =  new ArrayList<String>(Arrays.asList("----------", "centimeter", "meter", "kilometer", "inch", "feet", "miles"));
-        convUnits = oUnits;
-    }
-
-
-    public ArrayList<String> getoUnits() {
-        return oUnits;
-    }
-
-    public ArrayList<String> getConvUnits() {
-        return convUnits;
+       
+        for (Object unit : add)
+        {
+            originalUnit.addItem(unit.toString());
+        }
+        for (Object convUnit : add)
+        {
+            convertedUnit.addItem(convUnit.toString());
+        }
     }
 
     @Override
