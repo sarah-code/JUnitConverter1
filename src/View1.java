@@ -16,23 +16,27 @@ public class View1 extends JFrame implements ActionListener {
     private JButton resetButton;
     private JComboBox<Object> convertedUnit;
     private JButton switchButton;
+    private JLabel oText;
     Model cs = new Model();
 
-//    Font wingdings = new Font("Wingdings", Font.PLAIN, 14);
+    Font arial = new Font("Arial", Font.PLAIN, 14);
     private String [] oUnits;
     private String [] convUnits;
 
     public View1 ()
     {
+
         //readUnits();
         String[] unitCategories = {"----------", "Distance", "Mass", "Medical"};
         for (String cat : unitCategories)
         {
             unitCategory.addItem(cat);
         }
+
+
         String init[] = {"----------"};
-//        switchButton.setFont(wingdings.deriveFont(14f));
-        switchButton.setText("$(SWITCH).fields");
+        switchButton.setFont(arial);
+        switchButton.setText("\u2191  SWITCH  \u2193");
         conResult.setEditable(false);
         addToCombo(init);
         if (unitCategory.getSelectedItem().equals("----------")) {
