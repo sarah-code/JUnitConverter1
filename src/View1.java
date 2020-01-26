@@ -30,8 +30,14 @@ public class View1 extends JFrame implements ActionListener {
         }
         String init[] = {"----------"};
         addToCombo(init);
-
-//
+        if (unitCategory.getSelectedItem().equals("----------")) {
+            originalUnit.setEnabled(false);
+            oUnitValue.setEnabled(false);
+            conResult.setEnabled(false);
+            convertedUnit.setEnabled(false);
+            convertButton.setEnabled(false);
+            resetButton.setEnabled(false);
+        }
 
 
         convertButton.addActionListener(this);
@@ -41,7 +47,6 @@ public class View1 extends JFrame implements ActionListener {
                     public void actionPerformed(ActionEvent e) {
                         //if(e.getSource() == unitCategory) {
                             if (unitCategory.getSelectedItem().equals("----------")) {
-                                originalUnit.setSelectedIndex(-1);
                                 originalUnit.setEnabled(false);
                                 oUnitValue.setEnabled(false);
                                 conResult.setEnabled(false);
@@ -55,10 +60,24 @@ public class View1 extends JFrame implements ActionListener {
                                 convertedUnit.setEnabled(true);
                                 convertButton.setEnabled(true);
                                 resetButton.setEnabled(true);
+                                String select = (String)unitCategory.getSelectedItem();
+                                switch(select){
+                                    case "Distance": String distances [] = {"----------", "centimeter", "meter", "kilometer", "inch", "feet", "miles"};
+                                        addToCombo(distances); break;
+                                    case "Mass":
+                                        String mass [] = {"----------", "milligramm", "gramm", "kilogramm", "m ton", "us ton", "pound", "stone", "oz"};
+                                        addToCombo(mass); break;
+                                    case "Medical":
+                                        String medical [] = {"----------", "mnol/L", "ng/dL", "pg/mL", "pmol/L"};
+                                        addToCombo(medical); break;
+                                }
                                 if(unitCategory.getSelectedItem().equals("Distance"))
                                 {
-                                    String distances [] = {"----------", "centimeter", "meter", "kilometer", "inch", "feet", "miles"};
-                                    addToCombo(distances);
+
+                                }
+                                if(unitCategory.getSelectedItem().equals("Mass"))
+                                {
+
                                 }
                             }
                        // }
@@ -70,7 +89,8 @@ public class View1 extends JFrame implements ActionListener {
 
     public void addToCombo (String [] add)
     {
-       
+       originalUnit.removeAllItems();
+        convertedUnit.removeAllItems();
         for (Object unit : add)
         {
             originalUnit.addItem(unit.toString());
