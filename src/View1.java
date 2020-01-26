@@ -15,8 +15,10 @@ public class View1 extends JFrame implements ActionListener {
     private JButton convertButton;
     private JButton resetButton;
     private JComboBox<Object> convertedUnit;
+    private JButton switchButton;
     Model cs = new Model();
 
+//    Font wingdings = new Font("Wingdings", Font.PLAIN, 14);
     private String [] oUnits;
     private String [] convUnits;
 
@@ -29,11 +31,14 @@ public class View1 extends JFrame implements ActionListener {
             unitCategory.addItem(cat);
         }
         String init[] = {"----------"};
+//        switchButton.setFont(wingdings.deriveFont(14f));
+        switchButton.setText("$(SWITCH).fields");
+        conResult.setEditable(false);
         addToCombo(init);
         if (unitCategory.getSelectedItem().equals("----------")) {
             originalUnit.setEnabled(false);
             oUnitValue.setEnabled(false);
-            conResult.setEnabled(false);
+
             convertedUnit.setEnabled(false);
             convertButton.setEnabled(false);
             resetButton.setEnabled(false);
@@ -42,6 +47,41 @@ public class View1 extends JFrame implements ActionListener {
 
         convertButton.addActionListener(this);
 
+        switchButton.addActionListener(
+                new ActionListener(){
+
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        try {
+                            int posO = originalUnit.getSelectedIndex();
+                            int posC = convertedUnit.getSelectedIndex();
+                            originalUnit.setSelectedIndex(posC);
+                            convertedUnit.setSelectedIndex(posO);
+                            double valO = Double.parseDouble(oUnitValue.getText());
+                            double valC = Double.parseDouble(conResult.getText());
+                            oUnitValue.setText(Double.toString(valC));
+                            conResult.setText(Double.toString(valO));
+                        }
+                        catch (Exception npl)
+                        {
+                            JOptionPane.showMessageDialog(null, "The following exception occured: \n" + npl + "\n Please enter a valid entry into the first field.","Exception occured." , JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+                }
+        );
+
+        resetButton.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        addToCombo(init);
+                        oUnitValue.setText("");
+                        conResult.setText("");
+                        unitCategory.setSelectedIndex(0);
+                    }
+                }
+        );
+
         unitCategory.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
@@ -49,14 +89,14 @@ public class View1 extends JFrame implements ActionListener {
                             if (unitCategory.getSelectedItem().equals("----------")) {
                                 originalUnit.setEnabled(false);
                                 oUnitValue.setEnabled(false);
-                                conResult.setEnabled(false);
+
                                 convertedUnit.setEnabled(false);
                                 convertButton.setEnabled(false);
                                 resetButton.setEnabled(false);
                             } else {
                                 originalUnit.setEnabled(true);
                                 oUnitValue.setEnabled(true);
-                                conResult.setEnabled(true);
+
                                 convertedUnit.setEnabled(true);
                                 convertButton.setEnabled(true);
                                 resetButton.setEnabled(true);
@@ -71,14 +111,7 @@ public class View1 extends JFrame implements ActionListener {
                                         String medical [] = {"----------", "mnol/L", "ng/dL", "pg/mL", "pmol/L"};
                                         addToCombo(medical); break;
                                 }
-                                if(unitCategory.getSelectedItem().equals("Distance"))
-                                {
 
-                                }
-                                if(unitCategory.getSelectedItem().equals("Mass"))
-                                {
-
-                                }
                             }
                        // }
                     }
