@@ -7,8 +7,8 @@ public class Main {
         var cs = new Model();
         cs.initUnittable();
         var con = new Controller();
-        var viewer = new View1();
-        viewer.setContentPane(new View1().converterPanel);
+        var viewer = new View();
+        viewer.setContentPane(new View().converterPanel);
 
         viewer.setTitle("Converter Tool");
         //viewer.readUnits();
