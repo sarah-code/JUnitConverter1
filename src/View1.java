@@ -18,8 +18,8 @@ public class View1 extends JFrame implements ActionListener {
     private JButton switchButton;
     private JLabel oText;
     Model cs = new Model();
-
-    Font arial = new Font("Arial", Font.PLAIN, 14);
+    Controller controller = new Controller();
+    //Font arial = new Font("Arial", Font.PLAIN, 14);
     private String [] oUnits;
     private String [] convUnits;
 
@@ -35,7 +35,7 @@ public class View1 extends JFrame implements ActionListener {
 
 
         String init[] = {"----------"};
-        switchButton.setFont(arial);
+        //switchButton.setFont(arial);
         switchButton.setText("\u2191  SWITCH  \u2193");
         conResult.setEditable(false);
         addToCombo(init);
@@ -145,19 +145,21 @@ public class View1 extends JFrame implements ActionListener {
         }
         if(e.getSource() == convertButton) {
             try {
-                double value = Integer.parseInt(oUnitValue.getText());
+                double value = Double.parseDouble(oUnitValue.getText());
                 System.out.println(value);
                 String unitO = originalUnit.getSelectedItem().toString();
                 String unitC = convertedUnit.getSelectedItem().toString();
-                if(unitO.equals("----------") != false || !unitC.equals("----------") != false) {
-                    String conConv = unitO.concat(unitC);
+
+                String conConv = unitO.concat(unitC);
+                if(conConv.contains("-") != true) {
                     System.out.println(conConv);
                     System.out.println(cs.unittable.containsKey(conConv));
                     if (cs.unittable.containsKey(conConv))
                     {
                         System.out.println(cs.unittable.get(conConv));
                         double conversionRate = cs.unittable.get(conConv);
-                        double result = value * conversionRate;
+                        // double result = value * conversionRate;
+                        double result = controller.calcResult(value, conversionRate);
                         conResult.setText(Double.toString(result));
                     }
                     else
