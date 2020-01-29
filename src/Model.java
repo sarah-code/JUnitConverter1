@@ -1,7 +1,7 @@
 import java.util.HashMap;
 
 public class Model {
-    public HashMap<String, Double> unittable = new HashMap<String, Double>();
+    public HashMap<String, Double> unittable = new HashMap<>();
 
     public void setUnittable(HashMap<String, Double> unittable) {
         this.unittable = unittable;
@@ -11,11 +11,7 @@ public class Model {
         return unittable;
     }
 
-    public double get(String key)
-    {
-        return get(key);
-    }
-
+    String[] unitCategories;
 
     public void initUnittable ()
     {
@@ -52,5 +48,17 @@ public class Model {
         unittable.put("centimeterkilometer",0.00001);
         unittable.put("kilometercentimeter", 100000.0);
 
+        //medical
+        unittable.put("ng/dLmnol/L", 0.314465);
+        unittable.put("mnol/Lng/dL", 0.0347);
+
+
     }
+
+    public String [] unitCategories()
+    {
+         unitCategories = new String [] {"----------", "Distance", "Mass", "Medical"};
+        return unitCategories;
+    }
+
 }

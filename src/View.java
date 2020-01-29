@@ -22,19 +22,20 @@ public class View extends JFrame implements ActionListener {
     //Font arial = new Font("Arial", Font.PLAIN, 14);
     private String [] oUnits;
     private String [] convUnits;
+    String units [];
 
     public View()
     {
 
         //readUnits();
-        String[] unitCategories = {"----------", "Distance", "Mass", "Medical"};
+        String [] unitCategories = cs.unitCategories();
         for (String cat : unitCategories)
         {
             unitCategory.addItem(cat);
         }
 
 
-        String init[] = {"----------"};
+        String init[] = { unitCategories[0]};
         //switchButton.setFont(arial);
         switchButton.setText("\u2191  SWITCH  \u2193");
         conResult.setEditable(false);
@@ -42,7 +43,7 @@ public class View extends JFrame implements ActionListener {
         if (unitCategory.getSelectedItem().equals("----------")) {
             originalUnit.setEnabled(false);
             oUnitValue.setEnabled(false);
-
+            switchButton.setEnabled(false);
             convertedUnit.setEnabled(false);
             convertButton.setEnabled(false);
             resetButton.setEnabled(false);
@@ -51,11 +52,7 @@ public class View extends JFrame implements ActionListener {
 
         convertButton.addActionListener(this);
 
-        switchButton.addActionListener(
-                new ActionListener(){
-
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
+        switchButton.addActionListener((ActionEvent e) -> {
                         try {
                             int posO = originalUnit.getSelectedIndex();
                             int posC = convertedUnit.getSelectedIndex();
@@ -70,57 +67,44 @@ public class View extends JFrame implements ActionListener {
                         {
                             JOptionPane.showMessageDialog(null, "The following exception occured: \n" + npl + "\n Please enter a valid entry into the first field.","Exception occured." , JOptionPane.ERROR_MESSAGE);
                         }
-                    }
-                }
-        );
+                    });
 
-        resetButton.addActionListener(
-                new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
+        resetButton.addActionListener ((ActionEvent e)->{
                         addToCombo(init);
                         oUnitValue.setText("");
                         conResult.setText("");
-                        unitCategory.setSelectedIndex(0);
-                    }
+                        unitCategory.setSelectedIndex(0);});
+
+        unitCategory.addActionListener((ActionEvent e)-> {
+            if (unitCategory.getSelectedItem().equals("----------")) {
+                originalUnit.setEnabled(false);
+                oUnitValue.setEnabled(false);
+                switchButton.setEnabled(false);
+                convertedUnit.setEnabled(false);
+                convertButton.setEnabled(false);
+                resetButton.setEnabled(false);
+            } else {
+                originalUnit.setEnabled(true);
+                oUnitValue.setEnabled(true);
+                switchButton.setEnabled(true);
+                convertedUnit.setEnabled(true);
+                convertButton.setEnabled(true);
+                resetButton.setEnabled(true);
+                String select = (String) unitCategory.getSelectedItem();
+                switch (select) {
+                    case "Distance":
+                        units = new String[]{"----------", "centimeter", "meter", "kilometer", "inch", "feet", "miles"};
+                        break;
+                    case "Mass":
+                        units = new String[]{"----------", "milligramm", "gramm", "kilogramm", "m ton", "us ton", "pound", "stone", "oz"};
+                        break;
+                    case "Medical":
+                        units = new String[]{"----------", "mnol/L", "ng/dL", "pg/mL", "pmol/L"};
+                        break;
                 }
-        );
-
-        unitCategory.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        //if(e.getSource() == unitCategory) {
-                            if (unitCategory.getSelectedItem().equals("----------")) {
-                                originalUnit.setEnabled(false);
-                                oUnitValue.setEnabled(false);
-
-                                convertedUnit.setEnabled(false);
-                                convertButton.setEnabled(false);
-                                resetButton.setEnabled(false);
-                            } else {
-                                originalUnit.setEnabled(true);
-                                oUnitValue.setEnabled(true);
-
-                                convertedUnit.setEnabled(true);
-                                convertButton.setEnabled(true);
-                                resetButton.setEnabled(true);
-                                String select = (String)unitCategory.getSelectedItem();
-                                switch(select){
-                                    case "Distance": String distances [] = {"----------", "centimeter", "meter", "kilometer", "inch", "feet", "miles"};
-                                        addToCombo(distances); break;
-                                    case "Mass":
-                                        String mass [] = {"----------", "milligramm", "gramm", "kilogramm", "m ton", "us ton", "pound", "stone", "oz"};
-                                        addToCombo(mass); break;
-                                    case "Medical":
-                                        String medical [] = {"----------", "mnol/L", "ng/dL", "pg/mL", "pmol/L"};
-                                        addToCombo(medical); break;
-                                }
-
-                            }
-                       // }
-                    }
-                }
-        );
+                addToCombo(units);
+            }
+        });
 
     }
 
