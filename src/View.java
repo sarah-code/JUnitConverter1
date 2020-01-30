@@ -17,6 +17,7 @@ public class View extends JFrame implements ActionListener {
     private JComboBox<Object> convertedUnit;
     private JButton switchButton;
     private JLabel oText;
+    private JButton customizeButton;
     Model cs = new Model();
     Controller controller = new Controller();
     //Font arial = new Font("Arial", Font.PLAIN, 14);
