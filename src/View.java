@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -57,13 +60,7 @@ public class View extends JFrame implements ActionListener {
             resetButton.setEnabled(false);
         }
 
-        custOUlabel.setVisible(false);
-        custConvLabel.setVisible(false);
-        custUTLable.setVisible(false);
-        custOunit.setVisible(false);
-        custConversionRate.setVisible(false);
-        custConUnit.setVisible(false);
-        saveButton.setVisible(false);
+
 
 
         convertButton.addActionListener(this);
@@ -171,6 +168,7 @@ public class View extends JFrame implements ActionListener {
         if (cs.unittable.size() == 0) {
             cs.initUnittable();
         }
+        double conversionRate = 0;
         if(e.getSource() == convertButton) {
             try {
                 double value = Double.parseDouble(oUnitValue.getText());
@@ -179,21 +177,25 @@ public class View extends JFrame implements ActionListener {
                 String unitC = convertedUnit.getSelectedItem().toString();
 
                 String conConv = unitO.concat(unitC);
+
                 if(conConv.contains("-") != true) {
                     System.out.println(conConv);
-                    System.out.println(cs.unittable.containsKey(conConv));
-                    if (cs.unittable.containsKey(conConv))
+                    var foundKey = cs.unittable.containsKey(conConv);
+                    System.out.println(foundKey);
+                    if (foundKey)
                     {
                         System.out.println(cs.unittable.get(conConv));
-                        double conversionRate = cs.unittable.get(conConv);
+                        conversionRate = cs.unittable.get(conConv);
                         // double result = value * conversionRate;
                         double result = controller.calcResult(value, conversionRate);
                         conResult.setText(Double.toString(result));
+
                     }
                     else
                     {
                         JOptionPane.showMessageDialog(null, "The following exception occured: \n OUPPS. This combo is yet to be implemented. \n WIP.","Exception occured." , JOptionPane.ERROR_MESSAGE);
                     }
+                    debugWriteToFile(conConv, foundKey, conversionRate);
 
                 }
                 else
@@ -208,6 +210,13 @@ public class View extends JFrame implements ActionListener {
 
             }
         }
+
+    }
+    public void debugWriteToFile(String input, Boolean input2, double doubleInput) throws IOException {
+        var writer = new BufferedWriter(new FileWriter("log.txt", true));
+        writer.append("Combo " + input +" exists (T/F)? " + input2 +" Conversion Rate: "+ doubleInput + "\n");
+        writer.close();
+
 
     }
 }
