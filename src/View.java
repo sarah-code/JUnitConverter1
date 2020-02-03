@@ -18,6 +18,13 @@ public class View extends JFrame implements ActionListener {
     private JButton switchButton;
     private JLabel oText;
     private JButton customizeButton;
+    private JTextField custConversionRate;
+    private JTextField custOunit;
+    private JTextField custConUnit;
+    private JButton saveButton;
+    private JLabel custOUlabel;
+    private JLabel custUTLable;
+    private JLabel custConvLabel;
     Model cs = new Model();
     Controller controller = new Controller();
     //Font arial = new Font("Arial", Font.PLAIN, 14);
@@ -49,6 +56,14 @@ public class View extends JFrame implements ActionListener {
             convertButton.setEnabled(false);
             resetButton.setEnabled(false);
         }
+
+        custOUlabel.setVisible(false);
+        custConvLabel.setVisible(false);
+        custUTLable.setVisible(false);
+        custOunit.setVisible(false);
+        custConversionRate.setVisible(false);
+        custConUnit.setVisible(false);
+        saveButton.setVisible(false);
 
 
         convertButton.addActionListener(this);
@@ -105,6 +120,34 @@ public class View extends JFrame implements ActionListener {
                 }
                 addToCombo(units);
             }
+        });
+        customizeButton.addActionListener((ActionEvent e) -> {
+            var content = customizeButton.getText();
+            var containsRoom = content.contains(">");
+            if (containsRoom)
+            {
+                customizeButton.setText("Customize <<<");
+                custOUlabel.setVisible(containsRoom);
+                custConvLabel.setVisible(containsRoom);
+                custUTLable.setVisible(containsRoom);
+                custOunit.setVisible(containsRoom);
+                custConversionRate.setVisible(containsRoom);
+                custConUnit.setVisible(containsRoom);
+                saveButton.setVisible(containsRoom);
+            }
+            else
+            {
+                customizeButton.setText("Customize >>>");
+                custOUlabel.setVisible(containsRoom);
+                custConvLabel.setVisible(containsRoom);
+                custUTLable.setVisible(containsRoom);
+                custOunit.setVisible(containsRoom);
+                custConversionRate.setVisible(containsRoom);
+                custConUnit.setVisible(containsRoom);
+                saveButton.setVisible(containsRoom);
+            }
+
+
         });
 
     }
