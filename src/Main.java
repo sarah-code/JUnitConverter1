@@ -17,6 +17,7 @@ public class Main {
         viewer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         viewer.setResizable(false);
         viewer.pack();
+        viewer.setLocationRelativeTo(null);
         viewer.setVisible(true);
 
 
