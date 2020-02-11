@@ -1,2 +1,9 @@
-Combo meterfeet exists (T/F)? false Conversion Rate: 0.0
-Combo inchfeet exists (T/F)? false Conversion Rate: 0.0
+
+Combo pg/mLpmol/L exists (T/F)? false Conversion Rate: 0.0
+Combo pmol/Lpg/mL exists (T/F)? false Conversion Rate: 0.0Combo pmol/Lpg/mL exists (T/F)? true Conversion Rate: 0.27240533914464726
+Combo pmol/Lpg/mL exists (T/F)? true Conversion Rate: 0.27240533914464726
+Combo nmol/Lng/dL exists (T/F)? true Conversion Rate: 28.81844380403458
+Combo m tonkilogramm exists (T/F)? true Conversion Rate: 1000.0
+Combo kilogrammm ton exists (T/F)? true Conversion Rate: 0.001
+Combo kilogrammm ton exists (T/F)? true Conversion Rate: 0.001
+Combo centimeterkilometer exists (T/F)? true Conversion Rate: 1.0E-5

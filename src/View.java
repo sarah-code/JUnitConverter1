@@ -2,11 +2,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.EventListener;
 
 public class View extends JFrame implements ActionListener {
     public JFrame view = new JFrame();
@@ -20,20 +23,23 @@ public class View extends JFrame implements ActionListener {
     private JComboBox<Object> convertedUnit;
     private JButton switchButton;
     private JLabel oText;
-    private JButton customizeButton;
-    private JTextField custConversionRate;
-    private JTextField custOunit;
-    private JTextField custConUnit;
-    private JButton saveButton;
-    private JLabel custOUlabel;
-    private JLabel custUTLable;
-    private JLabel custConvLabel;
+//    private JButton customizeButton;
+//    private JTextField custConversionRate;
+//    private JTextField custOunit;
+//    private JTextField custConUnit;
+//    private JButton saveButton;
+//    private JLabel custOUlabel;
+//    private JLabel custUTLable;
+//    private JLabel custConvLabel;
+
     Model cs = new Model();
     Controller controller = new Controller();
     //Font arial = new Font("Arial", Font.PLAIN, 14);
     private String [] oUnits;
     private String [] convUnits;
     String units [];
+
+    public String nameStore;
 
     public View()
     {
@@ -61,26 +67,48 @@ public class View extends JFrame implements ActionListener {
         }
 
 
-
-
+        int index = 0;
         convertButton.addActionListener(this);
+//        originalUnit.addItemListener(new ItemListener() {
+//            @Override
+//            public void itemStateChanged(ItemEvent e) {
+//                System.out.println(e);
+//                System.out.println(e.getItem());
+//                int size = convertedUnit.getItemCount();
+//
+//                for (int i= 0; i < size ; i++)
+//                {
+//                    if(e.getItem()==convertedUnit.getItemAt(i))
+//                    {
+//                        convertedUnit.removeItem(originalUnit.getSelectedItem());
+//                    }
+//                    else
+//                    {
+//                        convertedUnit.addItem(e.getItem());
+//                    }
+//                }
+//
+//
+//
+//
+//            }
+//
+//        });
 
         switchButton.addActionListener((ActionEvent e) -> {
-                        try {
-                            int posO = originalUnit.getSelectedIndex();
-                            int posC = convertedUnit.getSelectedIndex();
-                            originalUnit.setSelectedIndex(posC);
-                            convertedUnit.setSelectedIndex(posO);
-                            double valO = Double.parseDouble(oUnitValue.getText());
-                            double valC = Double.parseDouble(conResult.getText());
-                            oUnitValue.setText(Double.toString(valC));
-                            conResult.setText(Double.toString(valO));
-                        }
-                        catch (Exception npl)
-                        {
-                            JOptionPane.showMessageDialog(null, "The following exception occured: \n" + npl + "\n Please enter a valid entry into the first field.","Exception occured." , JOptionPane.ERROR_MESSAGE);
-                        }
-                    });
+            try {
+                int posO = originalUnit.getSelectedIndex();
+                int posC = convertedUnit.getSelectedIndex();
+                originalUnit.setSelectedIndex(posC);
+                convertedUnit.setSelectedIndex(posO);
+                double valO = Double.parseDouble(oUnitValue.getText());
+                double valC = Double.parseDouble(conResult.getText());
+                oUnitValue.setText(Double.toString(valC));
+                conResult.setText(Double.toString(valO));
+            } catch (Exception npl) {
+                JOptionPane.showMessageDialog(null, "The following exception occured: \n" + npl + "\n Please enter a valid entry into the first field.", "Exception occured.", JOptionPane.ERROR_MESSAGE);
+            }
+        });
 
         resetButton.addActionListener ((ActionEvent e)->{
                         addToCombo(init);
@@ -104,49 +132,53 @@ public class View extends JFrame implements ActionListener {
                 convertButton.setEnabled(true);
                 resetButton.setEnabled(true);
                 String select = (String) unitCategory.getSelectedItem();
-                switch (select) {
-                    case "Distance":
-                        units = new String[]{"----------", "centimeter", "meter", "kilometer", "inch", "feet", "miles"};
-                        break;
-                    case "Mass":
-                        units = new String[]{"----------", "milligramm", "gramm", "kilogramm", "m ton", "us ton", "pound", "stone", "oz"};
-                        break;
-                    case "Medical":
-                        units = new String[]{"----------", "mnol/L", "ng/dL", "pg/mL", "pmol/L"};
-                        break;
-                }
-                addToCombo(units);
+                addUnits(select);
             }
         });
-        customizeButton.addActionListener((ActionEvent e) -> {
-            var content = customizeButton.getText();
-            var containsRoom = content.contains(">");
-            if (containsRoom)
-            {
-                customizeButton.setText("Customize <<<");
-                custOUlabel.setVisible(containsRoom);
-                custConvLabel.setVisible(containsRoom);
-                custUTLable.setVisible(containsRoom);
-                custOunit.setVisible(containsRoom);
-                custConversionRate.setVisible(containsRoom);
-                custConUnit.setVisible(containsRoom);
-                saveButton.setVisible(containsRoom);
-            }
-            else
-            {
-                customizeButton.setText("Customize >>>");
-                custOUlabel.setVisible(containsRoom);
-                custConvLabel.setVisible(containsRoom);
-                custUTLable.setVisible(containsRoom);
-                custOunit.setVisible(containsRoom);
-                custConversionRate.setVisible(containsRoom);
-                custConUnit.setVisible(containsRoom);
-                saveButton.setVisible(containsRoom);
-            }
+//        customizeButton.addActionListener((ActionEvent e) -> {
+//            var content = customizeButton.getText();
+//            var containsRoom = content.contains(">");
+//            if (containsRoom)
+//            {
+//                customizeButton.setText("Customize <<<");
+//                custOUlabel.setVisible(containsRoom);
+//                custConvLabel.setVisible(containsRoom);
+//                custUTLable.setVisible(containsRoom);
+//                custOunit.setVisible(containsRoom);
+//                custConversionRate.setVisible(containsRoom);
+//                custConUnit.setVisible(containsRoom);
+//                saveButton.setVisible(containsRoom);
+//            }
+//            else
+//            {
+//                customizeButton.setText("Customize >>>");
+//                custOUlabel.setVisible(containsRoom);
+//                custConvLabel.setVisible(containsRoom);
+//                custUTLable.setVisible(containsRoom);
+//                custOunit.setVisible(containsRoom);
+//                custConversionRate.setVisible(containsRoom);
+//                custConUnit.setVisible(containsRoom);
+//                saveButton.setVisible(containsRoom);
+//            }
+//
+//
+//        });
 
-
-        });
-
+    }
+    public void addUnits(String select)
+    {
+        switch (select) {
+            case "Distance":
+                units = new String[]{"----------", "centimeter", "meter", "kilometer", "inch", "feet", "miles"};
+                break;
+            case "Mass":
+                units = new String[]{"----------", "milligramm", "gramm", "kilogramm", "m ton", "us ton", "pound", "stone", "oz"};
+                break;
+            case "Medical":
+                units = new String[]{"----------", "nmol/L", "ng/dL", "pg/mL", "pmol/L"};
+                break;
+        }
+        addToCombo(units);
     }
 
     public void addToCombo (String [] add)
